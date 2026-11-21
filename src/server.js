@@ -9,7 +9,7 @@ require('dotenv').config();
 const pool = require('./config/db');
 const initSocket = require('./socket/socketHandler');
 
-// const authRoutes = require('./routes/auth.routes');
+const authRoutes = require('./routes/auth.routes');
 const usersRoutes = require('./routes/users.routes');
 const chatsRoutes = require('./routes/chats.routes');
 const mediaRoutes = require('./routes/media.routes');
@@ -30,8 +30,7 @@ app.set('io', io);
 
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '15mb' }));
 
 // Раздача загруженных медиафайлов
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
@@ -48,7 +47,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 // Подключение маршрутов API
-// app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/chats', chatsRoutes);
 app.use('/api/media', mediaRoutes);
