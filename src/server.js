@@ -6,15 +6,15 @@ const path = require('path');
 const { Server } = require('socket.io');
 require('dotenv').config();
 
-const pool = require('./config/db');
-const initSocket = require('./socket/socketHandler');
+const pool = require('./конфигурация/db');
+const initSocket = require('./розетка/socketHandler');
 
-const authRoutes = require('./routes/auth.routes');
-const usersRoutes = require('./routes/users.routes');
-const chatsRoutes = require('./routes/chats.routes');
-const mediaRoutes = require('./routes/media.routes');
-const starsRoutes = require('./routes/stars.routes');
-const premiumRoutes = require('./routes/premium.routes');
+// const authRoutes = require('./маршруты/auth.routes');
+const usersRoutes = require('./маршруты/users.routes');
+const chatsRoutes = require('./маршруты/chats.routes');
+const mediaRoutes = require('./маршруты/media.routes');
+const starsRoutes = require('./маршруты/stars.routes');
+const premiumRoutes = require('./маршруты/premium.routes');
 
 const app = express();
 const server = http.createServer(app);
@@ -48,7 +48,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 // Подключение маршрутов API
-app.use('/api/auth', authRoutes);
+// app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/chats', chatsRoutes);
 app.use('/api/media', mediaRoutes);
